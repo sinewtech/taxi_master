@@ -12,6 +12,7 @@ import {
   Table,
 } from "reactstrap";
 import firebase from "firebase";
+import { FaSearch } from "react-icons/fa";
 class Paga_cada_conductor extends Component {
   constructor(props) {
     super(props);
@@ -62,9 +63,11 @@ class Paga_cada_conductor extends Component {
             <Col>
               <FormGroup>
                 <InputGroup>
-                  <Input />
+                  <Input placeholder="Buscar" />
                   <InputGroupAddon addonType="prepend">
-                    <Button>Buscar :v</Button>
+                    <Button>
+                      <FaSearch />
+                    </Button>
                   </InputGroupAddon>
                 </InputGroup>
               </FormGroup>
@@ -84,7 +87,7 @@ class Paga_cada_conductor extends Component {
             {Object.keys(this.state.drivers_data).map(id => {
               return (
                 <tr>
-                  <th>{id}</th>
+                  <th>{this.state.drivers_data[id].username}</th>
                   <td>{this.state.drivers_data[id].name}</td>
                   <td>{this.state.drivers_data[id].phone}</td>
                   <td>L. {this.state.drivers_data[id].paga.toFixed(2)}</td>
