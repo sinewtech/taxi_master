@@ -13,13 +13,14 @@ import {
 } from "reactstrap";
 import firebase from "firebase";
 import { FaSearch } from "react-icons/fa";
-class Paga_cada_conductor extends Component {
+import "../Styles/PagaCadaConductor.css";
+class PagaCadaConductor extends Component {
   constructor(props) {
     super(props);
-    this.state = { drivers_data: {} };
+    this.state = { driversData: {} };
   }
   componentDidMount = async () => {
-    let drivers_data = {};
+    let driversData = {};
     await firebase
       .firestore()
       .collection("drivers")
@@ -27,17 +28,17 @@ class Paga_cada_conductor extends Component {
       .then(drivers => {
         let docs = drivers.docs;
         docs.map(doc => {
-          let filtered_data = doc.data();
-          delete filtered_data.email;
-          delete filtered_data.lateralcar;
-          delete filtered_data.profile;
-          delete filtered_data.profilecar;
-          delete filtered_data.pushDevices;
-          delete filtered_data.placa;
-          filtered_data.paga = 0;
-          drivers_data[doc.id] = filtered_data;
+          let filteredData = doc.data();
+          delete filteredData.email;
+          delete filteredData.lateralcar;
+          delete filteredData.profile;
+          delete filteredData.profilecar;
+          delete filteredData.pushDevices;
+          delete filteredData.placa;
+          filteredData.paga = 0;
+          driversData[doc.id] = filteredData;
         });
-        this.setState({ drivers_data });
+        this.setState({ driversData });
       });
 
     await firebase
@@ -46,7 +47,7 @@ class Paga_cada_conductor extends Component {
       .child("quotes")
       .once("value", data => {
         let quotes = data.exportVal();
-        Object.keys(drivers_data).map(id => {
+        Object.keys(driversData).map(id => {
           Object.keys(quotes).map(qid => {
             if (quotes[qid].userUID === id) {
               console.log("este es mia");
@@ -84,13 +85,13 @@ class Paga_cada_conductor extends Component {
             </tr>
           </thead>
           <tbody>
-            {Object.keys(this.state.drivers_data).map(id => {
+            {Object.keys(this.state.driversData).map(id => {
               return (
                 <tr>
-                  <th>{this.state.drivers_data[id].username}</th>
-                  <td>{this.state.drivers_data[id].name}</td>
-                  <td>{this.state.drivers_data[id].phone}</td>
-                  <td>L. {this.state.drivers_data[id].paga.toFixed(2)}</td>
+                  <th>{this.state.driversData[id].username}</th>
+                  <td>{this.state.driversData[id].name}</td>
+                  <td>{this.state.driversData[id].phone}</td>
+                  <td>L. {this.state.driversData[id].paga.toFixed(2)}</td>
                 </tr>
               );
             })}
@@ -101,4 +102,4 @@ class Paga_cada_conductor extends Component {
   }
 }
 
-export default Paga_cada_conductor;
+export default PagaCadaConductor;
