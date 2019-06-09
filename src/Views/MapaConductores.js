@@ -85,26 +85,27 @@ class MapaConductores extends React.Component {
   render() {
     console.log("Conductores cargados", this.state.drivers);
     return (
-      <div className = "App">
-        <div id = "map">
+      <div className="App">
+        <div id="map">
           <GoogleMapReact
             bootstrapURLKeys={{ key: "AIzaSyApNgtxFBp0SXSHljP_xku6peNCzjTFWM4" }}
             defaultCenter={{ lat: 14.0723, lng: -87.1921 }}
             center={this.state.center}
             defaultZoom={13}>
-              {Object.keys(this.state.drivers).map(key => {
-                if(this.state.drivers[key].position){
-                  return(
-                    <DriverMap
-                      key={key}
-                      lat={this.state.drivers[key].position.lat}
-                      lng={this.state.drivers[key].position.lng}
-                      driver={this.state.drivers[key]}
-                    />
-                  );
-                }
-                return 0;
-              })}            
+            {Object.keys(this.state.drivers).map(key => {
+              if (this.state.drivers[key].position) {
+                return (
+                  <DriverMap
+                    key={key}
+                    uid={key}
+                    lat={this.state.drivers[key].position.lat}
+                    lng={this.state.drivers[key].position.lng}
+                    driver={this.state.drivers[key]}
+                  />
+                );
+              }
+              return 0;
+            })}
           </GoogleMapReact>
         </div>
       </div>
