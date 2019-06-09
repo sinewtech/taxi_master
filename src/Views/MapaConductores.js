@@ -1,12 +1,12 @@
 import React from "react";
 import firebase from "../firebase.js";
 import GoogleMapReact from "google-map-react";
-import { FaMapMarker } from "react-icons/fa";
+//import { FaMapMarker } from "react-icons/fa";
 import DriverMap from "../Components/DriverMap.js";
 
-import "../Styles/Mapa.css";
+import "../Styles/MapaConductores.css";
 
-class Mapa extends React.Component {
+class MapaConductores extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -68,6 +68,7 @@ class Mapa extends React.Component {
       maxX = Math.max(maxX, point.latitude);
       minY = Math.min(minY, point.longitude);
       maxY = Math.max(maxY, point.longitude);
+      return 0;
     });
 
     const midX = (minX + maxX) / 2;
@@ -110,4 +111,4 @@ class Mapa extends React.Component {
     );
   }
 }
-export default Mapa;
+export default MapaConductores;

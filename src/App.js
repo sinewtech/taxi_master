@@ -6,7 +6,7 @@ import Header from "./Components/Header";
 import Inicio from "./Views/Inicio";
 import PagaCadaConductor from "./Views/PagaCadaConductor";
 import Error404 from "./Views/Error404";
-import Mapa from "./Views/Mapa.js";
+import Mapa from "./Views/MapaConductores.js";
 
 
 function App() {

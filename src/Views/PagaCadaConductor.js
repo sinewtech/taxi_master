@@ -14,10 +14,53 @@ import {
 import firebase from "../firebase.js";
 import { FaSearch } from "react-icons/fa";
 import "../Styles/PagaCadaConductor.css";
+
 class PagaCadaConductor extends Component {
   constructor(props) {
     super(props);
-    this.state = { driversData: {} };
+    this.state = { 
+      driversData: {},
+      driversDataFiltered: {},
+      searchQuery: '',
+    };
+    this.searchHandler = this.searchHandler.bind(this);
+    this.prueba = this.prueba.bind(this);
+  }
+
+  searchHandler(event){
+    this.setState({searchQuery: event.target.value});
+  }
+
+  prueba(){
+    if(this.state.searchQuery !== ''){
+      let data = {};
+      Object.keys(this.state.driversData).map(id => {
+        if(this.state.driversData[id].username.toLowerCase().includes(this.state.searchQuery)){
+          return (
+            <tr>
+              <th>{this.state.driversData[id].username}</th>
+              <td>{this.state.driversData[id].name}</td>
+              <td>{this.state.driversData[id].phone}</td>
+              <td>L. {this.state.driversData[id].paga.toFixed(2)}</td>
+            </tr>
+          );
+        }
+      })
+
+    }else{
+      alert("perro busque algo :v");
+      Object.keys(this.state.driversData).map(id => {
+        return (
+          <tr>
+            <th>{this.state.driversData[id].username}</th>
+            <td>{this.state.driversData[id].name}</td>
+            <td>{this.state.driversData[id].phone}</td>
+            <td>L. {this.state.driversData[id].paga.toFixed(2)}</td>
+          </tr>
+        );
+      })
+    }
+    
   }
 
   componentDidMount = async () => {
@@ -42,7 +85,7 @@ class PagaCadaConductor extends Component {
           return 0;
         });
 
-        this.setState({ driversData });
+        this.setState({driversData: driversData, driversDataFiltered: driversData });
       });
 
     await firebase
@@ -67,6 +110,7 @@ class PagaCadaConductor extends Component {
         return 0;
       });
   };
+
   render() {
     return (
       <Container>
@@ -75,9 +119,9 @@ class PagaCadaConductor extends Component {
             <Col>
               <FormGroup>
                 <InputGroup>
-                  <Input placeholder="Buscar" />
+                  <Input placeholder="Buscar por nombre" type = "text" onChange = {this.searchHandler} />
                   <InputGroupAddon addonType="prepend">
-                    <Button onClick={alert("hols :v")}>
+                    <Button onClick = {this.prueba()}>
                       <FaSearch />
                     </Button>
                   </InputGroupAddon>
@@ -102,7 +146,7 @@ class PagaCadaConductor extends Component {
                   <th>{this.state.driversData[id].username}</th>
                   <td>{this.state.driversData[id].name}</td>
                   <td>{this.state.driversData[id].phone}</td>
-                  <td>L. {this.state.driversData[id].paga.toFixed(2)}</td>
+                  <td>{this.state.driversData[id].paga.toFixed(2)}</td>
                 </tr>
               );
             })}
