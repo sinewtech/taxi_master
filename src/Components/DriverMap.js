@@ -1,4 +1,5 @@
 import React from "react";
+import { Popover, PopoverHeader, PopoverBody, Container, Row, Col } from "reactstrap";
 const colors = ["#f44336", "#4CAF50", "#FF9800"];
 const estados = ["Fuera de trabajo", "Libre", "En carrera"];
 
@@ -17,6 +18,7 @@ class DriverMap extends React.Component {
   render() {
     return (
       <div
+        id={this.props.uid}
         onClick={this.showPopover}
         style={{
           //backgroundColor: "white",
@@ -44,6 +46,27 @@ class DriverMap extends React.Component {
           }}>
           {this.props.driver.username}
         </p>
+        <Popover
+          placement="bottom"
+          isOpen={this.state.show}
+          target={this.props.uid}
+          toggle={this.showPopover}>
+          <PopoverBody>
+            <Container>
+              <Row>
+                <img
+                  style={{ height: "100%", width: "100%" }}
+                  alt={this.props.driver.name}
+                  src={this.props.driver.profile}
+                />
+              </Row>
+              <Row>
+                <strong>{this.props.driver.name}</strong>
+                <strong>{estados[this.props.driver.status]}</strong>
+              </Row>
+            </Container>
+          </PopoverBody>
+        </Popover>
       </div>
     );
   }
