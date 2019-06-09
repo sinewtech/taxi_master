@@ -34,10 +34,13 @@ class PagaCadaConductor extends Component {
     if (this.state.searchQuery !== "") {
       let driversDataFiltered = {};
       Object.keys(this.state.driversData).map(id => {
-        if (this.state.driversData[id].name.toLowerCase().includes(this.state.searchQuery)) {
+        if (this.state.driversData[id].name.toLowerCase().includes(this.state.searchQuery) ||
+        this.state.driversData[id].username.toLowerCase().includes(this.state.searchQuery) ||
+        this.state.driversData[id].phone.includes(this.state.searchQuery)) {
           driversDataFiltered[id] = this.state.driversData[id];
         }
         this.setState({ driversDataFiltered });
+        return 0;
       });
     } else {
       this.setState({ driversDataFiltered: this.state.driversData });
@@ -100,7 +103,7 @@ class PagaCadaConductor extends Component {
             <Col>
               <FormGroup>
                 <InputGroup>
-                  <Input placeholder="Buscar por nombre" type="text" onChange={this.queryHandler} />
+                  <Input placeholder="Buscar por ID, Nombre o Teléfono" type="text" onChange={this.queryHandler} />
                   <InputGroupAddon addonType="prepend">
                     <Button type="submit">
                       <FaSearch />
@@ -116,7 +119,7 @@ class PagaCadaConductor extends Component {
             <tr>
               <th>ID</th>
               <th>Nombre</th>
-              <th>Telefono</th>
+              <th>Teléfono</th>
               <th>Paga</th>
             </tr>
           </thead>

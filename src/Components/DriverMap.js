@@ -1,5 +1,6 @@
 import React from "react";
 const colors = ["#f44336", "#4CAF50", "#FF9800"];
+//eslint-disable-next-line
 const estados = ["Fuera de trabajo", "Libre", "En carrera"];
 
 class DriverMap extends React.Component {
