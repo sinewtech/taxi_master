@@ -1,5 +1,5 @@
 import React from "react";
-import { Popover, PopoverHeader, PopoverBody, Container, Row, Col } from "reactstrap";
+import { Popover, PopoverBody, Container, Row } from "reactstrap";
 const colors = ["#f44336", "#4CAF50", "#FF9800"];
 //eslint-disable-next-line
 const estados = ["Fuera de trabajo", "Libre", "En carrera"];
