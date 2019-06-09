@@ -11,7 +11,7 @@ import {
   Button,
   Table,
 } from "reactstrap";
-import firebase from "firebase";
+import firebase from "../firebase.js";
 import { FaSearch } from "react-icons/fa";
 import "../Styles/PagaCadaConductor.css";
 class PagaCadaConductor extends Component {
@@ -19,8 +19,10 @@ class PagaCadaConductor extends Component {
     super(props);
     this.state = { driversData: {} };
   }
+  
   componentDidMount = async () => {
     let driversData = {};
+
     await firebase
       .firestore()
       .collection("drivers")
@@ -38,6 +40,7 @@ class PagaCadaConductor extends Component {
           filteredData.paga = 0;
           driversData[doc.id] = filteredData;
         });
+
         this.setState({ driversData });
       });
 
@@ -47,7 +50,10 @@ class PagaCadaConductor extends Component {
       .child("quotes")
       .once("value", data => {
         let quotes = data.exportVal();
-        Object.keys(driversData).map(id => {
+        console.log("Drivers data", driversData);
+        console.log("Quotes", quotes);
+
+        if (quotes) Object.keys(driversData).map(id => {
           Object.keys(quotes).map(qid => {
             if (quotes[qid].userUID === id) {
               console.log("este es mia");
@@ -66,7 +72,7 @@ class PagaCadaConductor extends Component {
                 <InputGroup>
                   <Input placeholder="Buscar" />
                   <InputGroupAddon addonType="prepend">
-                    <Button>
+                    <Button onClick = {alert("hols :v")}>
                       <FaSearch />
                     </Button>
                   </InputGroupAddon>

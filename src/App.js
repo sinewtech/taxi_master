@@ -1,19 +1,13 @@
 import React from "react";
+import firebase from "./firebase.js";
 import "./Styles/App.css";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Header from "./Components/Header";
 import Inicio from "./Views/Inicio";
 import PagaCadaConductor from "./Views/PagaCadaConductor";
 import Error404 from "./Views/Error404";
-import firebase from "firebase";
-firebase.initializeApp({
-  apiKey: "AIzaSyBkCxRqmYLXkznasnf-MRTROWVJcORIGcw",
-  authDomain: "taxiapp-sinewave.firebaseapp.com",
-  databaseURL: "https://taxiapp-sinewave.firebaseio.com",
-  projectId: "taxiapp-sinewave",
-  storageBucket: "taxiapp-sinewave.appspot.com",
-  messagingSenderId: "503391985374",
-});
+import Mapa from "./Views/Mapa.js";
+
 
 function App() {
   return (
@@ -24,6 +18,7 @@ function App() {
           <Switch>
             <Route path="/" component={Inicio} exact />
             <Route path="/paga_cada_conductor" component={PagaCadaConductor} exact />
+            <Route path = "/mapa_conductores" component = {Mapa} exact />
             <Route component={Error404} />
           </Switch>
         </div>

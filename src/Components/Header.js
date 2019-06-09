@@ -31,6 +31,16 @@ class Header extends Component {
         <Collapse isOpen={this.state.MenuIsOpen} navbar>
           <Nav className="ml-auto" navbar>
             <NavItem>
+            <NavLink className="nav-link" style={{ color: "black" }} to="/">
+                Inicio
+              </NavLink>
+            </NavItem>
+            <NavItem>
+            <NavLink className="nav-link" style={{ color: "black" }} to="/mapa_conductores">
+                Mapa Conductores
+              </NavLink>
+            </NavItem>
+            <NavItem>
               <NavLink className="nav-link" style={{ color: "black" }} to="/paga_cada_conductor">
                 Paga a cada conductor
               </NavLink>
