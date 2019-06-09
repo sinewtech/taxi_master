@@ -1,25 +1,24 @@
 import React from "react";
-import { Popover, Overlay, Row, Container } from "react-bootstrap";
 const colors = ["#f44336", "#4CAF50", "#FF9800"];
 const estados = ["Fuera de trabajo", "Libre", "En carrera"];
 
-class DriverMap extends React.Component{
-  constructor(props){
+class DriverMap extends React.Component {
+  constructor(props) {
     super(props);
     this.state = {
       show: false,
     };
   }
 
-  showPopover = ({target}) => {
-    this.setState( s => ({target, show: !s.show}));
+  showPopover = ({ target }) => {
+    this.setState(s => ({ target, show: !s.show }));
   };
 
-  render(){
-    return(
+  render() {
+    return (
       <div
-        onClick = {this.showPopover}
-        style = {{
+        onClick={this.showPopover}
+        style={{
           //backgroundColor: "white",
           backgroundColor: colors[this.props.driver.status],
           borderRadius: "100%",
@@ -31,9 +30,9 @@ class DriverMap extends React.Component{
           padding: 6,
           display: "flex",
           justifyContent: "center",
-          alignItems: "center"
+          alignItems: "center",
         }}>
-          <p
+        <p
           style={{
             fontSize: 20,
             fontFamily: "arial",
@@ -43,30 +42,8 @@ class DriverMap extends React.Component{
             marginTop: "auto",
             marginBottom: "auto",
           }}>
-            {this.props.driver.username}
-          </p>
-          <Overlay
-          show={this.state.show}
-          target={this.state.target}
-          placement="top"
-          container={this}
-          containerPadding={20}>
-          <Popover id="popover-basic">
-            <Container>
-              <Row>
-                <img
-                  style={{ height: "100%", width: "100%" }}
-                  alt={this.props.driver.name}
-                  src={this.props.driver.profile}
-                />
-              </Row>
-              <Row>
-                <strong>{this.props.driver.name}</strong>
-                <strong>{estados[this.props.driver.status]}</strong>
-              </Row>
-            </Container>
-          </Popover>
-        </Overlay>
+          {this.props.driver.username}
+        </p>
       </div>
     );
   }

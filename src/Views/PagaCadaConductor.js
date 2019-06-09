@@ -18,50 +18,31 @@ import "../Styles/PagaCadaConductor.css";
 class PagaCadaConductor extends Component {
   constructor(props) {
     super(props);
-    this.state = { 
+    this.state = {
       driversData: {},
       driversDataFiltered: {},
-      searchQuery: '',
+      searchQuery: "",
     };
-    this.searchHandler = this.searchHandler.bind(this);
-    this.prueba = this.prueba.bind(this);
   }
 
-  searchHandler(event){
-    this.setState({searchQuery: event.target.value});
-  }
+  queryHandler = event => {
+    this.setState({ searchQuery: event.target.value });
+  };
 
-  prueba(){
-    if(this.state.searchQuery !== ''){
-      let data = {};
+  getResult = event => {
+    event.preventDefault();
+    if (this.state.searchQuery !== "") {
+      let driversDataFiltered = {};
       Object.keys(this.state.driversData).map(id => {
-        if(this.state.driversData[id].username.toLowerCase().includes(this.state.searchQuery)){
-          return (
-            <tr>
-              <th>{this.state.driversData[id].username}</th>
-              <td>{this.state.driversData[id].name}</td>
-              <td>{this.state.driversData[id].phone}</td>
-              <td>L. {this.state.driversData[id].paga.toFixed(2)}</td>
-            </tr>
-          );
+        if (this.state.driversData[id].name.toLowerCase().includes(this.state.searchQuery)) {
+          driversDataFiltered[id] = this.state.driversData[id];
         }
-      })
-
-    }else{
-      alert("perro busque algo :v");
-      Object.keys(this.state.driversData).map(id => {
-        return (
-          <tr>
-            <th>{this.state.driversData[id].username}</th>
-            <td>{this.state.driversData[id].name}</td>
-            <td>{this.state.driversData[id].phone}</td>
-            <td>L. {this.state.driversData[id].paga.toFixed(2)}</td>
-          </tr>
-        );
-      })
+        this.setState({ driversDataFiltered });
+      });
+    } else {
+      this.setState({ driversDataFiltered: this.state.driversData });
     }
-    
-  }
+  };
 
   componentDidMount = async () => {
     let driversData = {};
@@ -85,7 +66,7 @@ class PagaCadaConductor extends Component {
           return 0;
         });
 
-        this.setState({driversData: driversData, driversDataFiltered: driversData });
+        this.setState({ driversData: driversData, driversDataFiltered: driversData });
       });
 
     await firebase
@@ -114,14 +95,14 @@ class PagaCadaConductor extends Component {
   render() {
     return (
       <Container>
-        <Form>
+        <Form onSubmit={this.getResult}>
           <Row>
             <Col>
               <FormGroup>
                 <InputGroup>
-                  <Input placeholder="Buscar por nombre" type = "text" onChange = {this.searchHandler} />
+                  <Input placeholder="Buscar por nombre" type="text" onChange={this.queryHandler} />
                   <InputGroupAddon addonType="prepend">
-                    <Button onClick = {this.prueba()}>
+                    <Button type="submit">
                       <FaSearch />
                     </Button>
                   </InputGroupAddon>
@@ -140,13 +121,13 @@ class PagaCadaConductor extends Component {
             </tr>
           </thead>
           <tbody>
-            {Object.keys(this.state.driversData).map(id => {
+            {Object.keys(this.state.driversDataFiltered).map(id => {
               return (
                 <tr>
-                  <th>{this.state.driversData[id].username}</th>
-                  <td>{this.state.driversData[id].name}</td>
-                  <td>{this.state.driversData[id].phone}</td>
-                  <td>{this.state.driversData[id].paga.toFixed(2)}</td>
+                  <th>{this.state.driversDataFiltered[id].username}</th>
+                  <td>{this.state.driversDataFiltered[id].name}</td>
+                  <td>{this.state.driversDataFiltered[id].phone}</td>
+                  <td>{this.state.driversDataFiltered[id].paga.toFixed(2)}</td>
                 </tr>
               );
             })}
