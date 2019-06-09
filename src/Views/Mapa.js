@@ -2,6 +2,9 @@ import React from "react";
 import firebase from "../firebase.js";
 import GoogleMapReact from "google-map-react";
 import { FaMapMarker } from "react-icons/fa";
+import DriverMap from "../Components/DriverMap.js";
+
+import "../Styles/Mapa.css";
 
 class Mapa extends React.Component {
   constructor(props) {
@@ -81,8 +84,28 @@ class Mapa extends React.Component {
   render() {
     console.log("Conductores cargados", this.state.drivers);
     return (
-      <div>
-        <h1>hols :v</h1>
+      <div className = "App">
+        <div id = "map">
+          <GoogleMapReact
+            bootstrapURLKeys={{ key: "AIzaSyApNgtxFBp0SXSHljP_xku6peNCzjTFWM4" }}
+            defaultCenter={{ lat: 14.0723, lng: -87.1921 }}
+            center={this.state.center}
+            defaultZoom={13}>
+              {Object.keys(this.state.drivers).map(key => {
+                if(this.state.drivers[key].position){
+                  return(
+                    <DriverMap
+                      key={key}
+                      lat={this.state.drivers[key].position.lat}
+                      lng={this.state.drivers[key].position.lng}
+                      driver={this.state.drivers[key]}
+                    />
+                  );
+                }
+                return 0;
+              })}            
+          </GoogleMapReact>
+        </div>
       </div>
     );
   }

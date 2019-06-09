@@ -1,0 +1,11 @@
+.App {
+  text-align: center;
+  height: 100vh;
+  display: flex;
+}
+
+#map{
+  height: 100vh;
+  flex: 1;
+  z-index: 0;
+}

@@ -1,5 +1,5 @@
 import React from "react";
-import firebase from "./firebase.js";
+//import firebase from "./firebase.js";
 import "./Styles/App.css";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Header from "./Components/Header";
