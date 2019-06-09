@@ -19,7 +19,7 @@ class PagaCadaConductor extends Component {
     super(props);
     this.state = { driversData: {} };
   }
-  
+
   componentDidMount = async () => {
     let driversData = {};
 
@@ -39,6 +39,7 @@ class PagaCadaConductor extends Component {
           delete filteredData.placa;
           filteredData.paga = 0;
           driversData[doc.id] = filteredData;
+          return 0;
         });
 
         this.setState({ driversData });
@@ -53,13 +54,17 @@ class PagaCadaConductor extends Component {
         console.log("Drivers data", driversData);
         console.log("Quotes", quotes);
 
-        if (quotes) Object.keys(driversData).map(id => {
-          Object.keys(quotes).map(qid => {
-            if (quotes[qid].userUID === id) {
-              console.log("este es mia");
-            }
+        if (quotes)
+          Object.keys(driversData).map(id => {
+            Object.keys(quotes).map(qid => {
+              if (quotes[qid].userUID === id) {
+                console.log("este es mia");
+              }
+              return 0;
+            });
+            return 0;
           });
-        });
+        return 0;
       });
   };
   render() {
@@ -72,7 +77,7 @@ class PagaCadaConductor extends Component {
                 <InputGroup>
                   <Input placeholder="Buscar" />
                   <InputGroupAddon addonType="prepend">
-                    <Button onClick = {alert("hols :v")}>
+                    <Button onClick={alert("hols :v")}>
                       <FaSearch />
                     </Button>
                   </InputGroupAddon>

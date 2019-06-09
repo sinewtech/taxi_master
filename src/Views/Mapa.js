@@ -1,18 +1,18 @@
 import React from "react";
-import firebase from "../firebase.js"
+import firebase from "../firebase.js";
 import GoogleMapReact from "google-map-react";
-import {FaMapMarker} from "react-icons/fa";
+import { FaMapMarker } from "react-icons/fa";
 
-class Mapa extends React.Component{
-  constructor(props){
+class Mapa extends React.Component {
+  constructor(props) {
     super(props);
     this.state = {
       drivers: {},
-      center: {lat: 14.0723, lng: -87.1921},
+      center: { lat: 14.0723, lng: -87.1921 },
     };
   }
 
-  componentDidMount = async()=>{
+  componentDidMount = async () => {
     await firebase
       .firestore()
       .collection("drivers")
@@ -23,29 +23,29 @@ class Mapa extends React.Component{
           let data = doc.data();
           drivers[doc.id] = data;
         });
-        this.setState({drivers});
+        this.setState({ drivers });
       });
     await firebase
       .database()
       .ref()
       .child("/locations/")
-      .on("value",async snap => {
+      .on("value", async snap => {
         let drivers = this.state.drivers;
         let locations = snap.exportVal();
-        Object.keys(locations).map(driver =>{
+        Object.keys(locations).map(driver => {
           if (locations[driver]) {
             drivers[driver]["position"] = locations[driver].position;
             drivers[driver]["status"] = locations[driver].status;
           }
           return 0;
         });
-        await this.setState({drivers});
+        await this.setState({ drivers });
       });
   };
 
-  update_center = (lat,lng) => {
-    this.setState({center: {lat,lng}});
-  }
+  update_center = (lat, lng) => {
+    this.setState({ center: { lat, lng } });
+  };
 
   containPoints = points => {
     // points should be an array of { latitude: X, longitude: Y }
@@ -79,12 +79,12 @@ class Mapa extends React.Component{
   };
 
   render() {
-    console.log("Conductores cargados",this.state.drivers);
-    return(
+    console.log("Conductores cargados", this.state.drivers);
+    return (
       <div>
         <h1>hols :v</h1>
       </div>
-    )
+    );
   }
 }
 export default Mapa;
