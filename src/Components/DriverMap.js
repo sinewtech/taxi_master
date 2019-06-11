@@ -1,5 +1,5 @@
 import React from "react";
-import { Popover, PopoverBody, Container, Row } from "reactstrap";
+import { Popover, PopoverBody, Container, Row, Col, Button } from "reactstrap";
 const colors = ["#f44336", "#4CAF50", "#FF9800"];
 //eslint-disable-next-line
 const estados = ["Fuera de trabajo", "Libre", "En carrera"];
@@ -51,19 +51,31 @@ class DriverMap extends React.Component {
           placement="bottom"
           isOpen={this.state.show}
           target={this.props.uid}
-          toggle={this.showPopover}>
+          toggle={this.showPopover}
+          trigger="legacy">
           <PopoverBody>
             <Container>
               <Row>
-                <img
-                  style={{ height: "100%", width: "100%" }}
-                  alt={this.props.driver.name}
-                  src={this.props.driver.profile}
-                />
+                <Col>
+                  <img
+                    style={{ height: "auto", width: "100%" }}
+                    alt={this.props.driver.name}
+                    src={this.props.driver.profile}
+                  />
+                </Col>
+                <Col>
+                  <Row>
+                    <strong>{this.props.driver.name}</strong>
+                  </Row>
+                  <Row stule={{ marginTop: "10px" }}>
+                    <strong style={{ color: colors[this.props.driver.status] }}>
+                      {estados[this.props.driver.status]}
+                    </strong>
+                  </Row>
+                </Col>
               </Row>
-              <Row>
-                <strong>{this.props.driver.name}</strong>
-                <strong>{estados[this.props.driver.status]}</strong>
+              <Row style={{ marginTop: "5px" }}>
+                <Button style={{ size: "sm", width: "100%" }}>Mandar Mensaje</Button>
               </Row>
             </Container>
           </PopoverBody>

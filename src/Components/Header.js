@@ -23,7 +23,7 @@ class Header extends Component {
         <NavbarBrand href="/" style={{ color: "white", fontWeight: "bolder" }}>
           <NavLink to="/">
             <div style={{ textAlign: "center" }}>
-              <img alt="Logo" style={{ height: "fill", width: 75 }} src={"/logo512.png"} />
+              <img alt="Logo" style={{ height: "fill", width: 75 }} src={"/Logo512.png"} />
             </div>
           </NavLink>
         </NavbarBrand>
@@ -31,12 +31,12 @@ class Header extends Component {
         <Collapse isOpen={this.state.MenuIsOpen} navbar>
           <Nav className="ml-auto" navbar>
             <NavItem>
-            <NavLink className="nav-link" style={{ color: "black" }} to="/">
+              <NavLink className="nav-link" style={{ color: "black" }} to="/">
                 Inicio
               </NavLink>
             </NavItem>
             <NavItem>
-            <NavLink className="nav-link" style={{ color: "black" }} to="/mapa_conductores">
+              <NavLink className="nav-link" style={{ color: "black" }} to="/mapa_conductores">
                 Mapa Conductores
               </NavLink>
             </NavItem>
