@@ -34,9 +34,9 @@ class PagaCadaConductor extends Component {
     if (this.state.searchQuery !== "") {
       let driversDataFiltered = {};
       Object.keys(this.state.driversData).map(id => {
-        if (this.state.driversData[id].name.toLowerCase().includes(this.state.searchQuery) ||
-        this.state.driversData[id].username.toLowerCase().includes(this.state.searchQuery) ||
-        this.state.driversData[id].phone.includes(this.state.searchQuery)) {
+        if (this.state.driversData[id].name.toLowerCase().includes(this.state.searchQuery.toLowerCase()) ||
+        this.state.driversData[id].username.toLowerCase().includes(this.state.searchQuery.toLowerCase()) ||
+        this.state.driversData[id].phone.includes(this.state.searchQuery.toLowerCase())) {
           driversDataFiltered[id] = this.state.driversData[id];
         }
         this.setState({ driversDataFiltered });
