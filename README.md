@@ -1,68 +1,79 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Taxi Master
 
-## Available Scripts
+La aplicacion para el dueño de la central.
 
-In the project directory, you can run:
+## Motivacion
 
-### `npm start`
+Para poder aceptar o denegar nuevos conductores en el sistema.
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Estilo de codigo
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+Estamos usando el estilo de programacion de [Expo](https://github.com/expo) eslint-config-universe para linting y prettier para style.
 
-### `npm test`
+![Style](https://img.shields.io/badge/Coding_Style-eslint--config--unverse-blue.svg)
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Eslint
 
-### `npm run build`
+```js
+Este es .eslintrc.js
+module.exports = {
+  extends: ["universe/web", "prettier"],
+  parserOptions: {
+    es6: true,
+  },
+};
+```
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Prettier
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+```json
+Este es .prettierrc
+{
+  "printWidth": 100,
+  "tabWidth": 2,
+  "singleQuote": false,
+  "jsxBracketSameLine": true,
+  "trailingComma": "es5"
+}
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Commits
 
-### `npm run eject`
+Inspirado en [dannyfritz/commit-message-emoji](https://github.com/dannyfritz/commit-message-emoji)
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+| Commit type              | Emoji                                                     |
+| :----------------------- | :-------------------------------------------------------- |
+| Initial commit           | :tada: `:tada:`                                           |
+| Version tag              | :bookmark: `:bookmark:`                                   |
+| New feature              | :sparkles: `:sparkles:`                                   |
+| Bugfix                   | :bug: `:bug:`                                             |
+| Metadata                 | :card_index: `:card_index:`                               |
+| Documenting source code  | :bulb: `:bulb:`                                           |
+| Performance              | :racehorse: `:racehorse:`                                 |
+| Cosmetic                 | :lipstick: `:lipstick:`                                   |
+| General update           | :zap: `:zap:`                                             |
+| Improve format/structure | :art: `:art:`                                             |
+| Refactor code            | :hammer: `:hammer:`                                       |
+| Removing code/files      | :fire: `:fire:`                                           |
+| Continuous Integration   | :green_heart: `:green_heart:`                             |
+| Security                 | :lock: `:lock:`                                           |
+| Upgrading dependencies   | :arrow_up: `:arrow_up:`                                   |
+| Downgrading dependencies | :arrow_down: `:arrow_down:`                               |
+| Lint                     | :shirt: `:shirt:`                                         |
+| Translation              | :alien: `:alien:`                                         |
+| Text                     | :pencil: `:pencil:`                                       |
+| Critical hotfix          | :ambulance: `:ambulance:`                                 |
+| Deploying stuff          | :rocket: `:rocket:`                                       |
+| Work in progress         | :construction: `:construction:`                           |
+| Adding CI build system   | :construction_worker: `:construction_worker:`             |
+| Removing a dependency    | :heavy_minus_sign: `:heavy_minus_sign:`                   |
+| Adding a dependency      | :heavy_plus_sign: `:heavy_plus_sign:`                     |
+| Package.json in JS       | :package: `:package:`                                     |
+| Merging branches         | :twisted_rightwards_arrows: `:twisted_rightwards_arrows:` |
+| Bad code / need improv.  | :hankey: `:hankey:`                                       |
+| Reverting changes        | :rewind: `:rewind:`                                       |
+| Breaking changes         | :boom: `:boom:`                                           |
+| Code review changes      | :ok_hand: `:ok_hand:`                                     |
+| Accessibility            | :wheelchair: `:wheelchair:`                               |
+| Move/rename repository   | :truck: `:truck:`                                         |
+| Other                    | [Be creative](http://www.emoji-cheat-sheet.com/)          |
