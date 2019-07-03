@@ -34,7 +34,8 @@ class PagaCadaConductor extends Component {
     if (this.state.searchQuery !== "") {
       let driversDataFiltered = {};
       Object.keys(this.state.driversData).map(id => {
-        if (this.state.driversData[id].name.toLowerCase().includes(this.state.searchQuery.toLowerCase()) ||
+        if (this.state.driversData[id].firstName.toLowerCase().includes(this.state.searchQuery.toLowerCase()) ||
+        this.state.driversData[id].lastName.toLowerCase().includes(this.state.searchQuery.toLowerCase()) ||
         this.state.driversData[id].username.toLowerCase().includes(this.state.searchQuery.toLowerCase()) ||
         this.state.driversData[id].phone.includes(this.state.searchQuery.toLowerCase())) {
           driversDataFiltered[id] = this.state.driversData[id];
@@ -128,7 +129,7 @@ class PagaCadaConductor extends Component {
               return (
                 <tr>
                   <th>{this.state.driversDataFiltered[id].username}</th>
-                  <td>{this.state.driversDataFiltered[id].name}</td>
+                  <td>{this.state.driversDataFiltered[id].firstName + " " + this.state.driversDataFiltered[id].lastName}</td>
                   <td>{this.state.driversDataFiltered[id].phone}</td>
                   <td>{this.state.driversDataFiltered[id].paga.toFixed(2)}</td>
                 </tr>

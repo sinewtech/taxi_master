@@ -59,13 +59,13 @@ class DriverMap extends React.Component {
                 <Col>
                   <img
                     style={{ height: "auto", width: "100%" }}
-                    alt={this.props.driver.name}
+                    alt={this.props.driver.firstName + " " + this.props.driver.lastName}
                     src={this.props.driver.profile}
                   />
                 </Col>
                 <Col>
                   <Row>
-                    <strong>{this.props.driver.name}</strong>
+                    <strong>{this.props.driver.firstName + " " + this.props.driver.lastName}</strong>
                   </Row>
                   <Row stule={{ marginTop: "10px" }}>
                     <strong style={{ color: colors[this.props.driver.status] }}>
