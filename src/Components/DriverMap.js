@@ -67,7 +67,7 @@ class DriverMap extends React.Component {
                   <Row>
                     <strong>{this.props.driver.firstName + " " + this.props.driver.lastName}</strong>
                   </Row>
-                  <Row stule={{ marginTop: "10px" }}>
+                  <Row style={{ marginTop: "10px" }}>
                     <strong style={{ color: colors[this.props.driver.status] }}>
                       {estados[this.props.driver.status]}
                     </strong>

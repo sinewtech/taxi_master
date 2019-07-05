@@ -36,7 +36,10 @@ class MapaConductores extends React.Component {
         let drivers = this.state.drivers;
         let locations = snap.exportVal();
         Object.keys(locations).map(driver => {
-          if (locations[driver]) {
+          if (locations[driver] && drivers[driver]) {
+            console.log("prueba: ")
+            console.log(drivers[driver]);
+            console.log("fin prueba");
             drivers[driver]["position"] = locations[driver].position;
             drivers[driver]["status"] = locations[driver].status;
           }
@@ -91,6 +94,7 @@ class MapaConductores extends React.Component {
             bootstrapURLKeys={{ key: "AIzaSyApNgtxFBp0SXSHljP_xku6peNCzjTFWM4" }}
             defaultCenter={{ lat: 14.0723, lng: -87.1921 }}
             center={this.state.center}
+            yesIWantToUseGoogleMapApiInternals
             defaultZoom={13}>
             {Object.keys(this.state.drivers).map(key => {
               if (this.state.drivers[key].position) {
