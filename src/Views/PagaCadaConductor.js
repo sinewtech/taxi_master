@@ -66,7 +66,9 @@ class PagaCadaConductor extends Component {
           delete filteredData.pushDevices;
           delete filteredData.placa;
           filteredData.paga = 0;
-          driversData[doc.id] = filteredData;
+          if(filteredData.dev !== true){
+            driversData[doc.id] = filteredData;
+          }
           return 0;
         });
 

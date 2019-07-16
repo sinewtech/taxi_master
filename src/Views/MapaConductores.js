@@ -15,7 +15,7 @@ class MapaConductores extends React.Component {
     };
   }
 
-  componentDidMount = async () => {
+  componentWillMount = async () => {
     await firebase
       .firestore()
       .collection("drivers")
@@ -24,7 +24,9 @@ class MapaConductores extends React.Component {
         let drivers = {};
         querysnapshot.forEach(doc => {
           let data = doc.data();
-          drivers[doc.id] = data;
+          if(data.dev!== true){
+            drivers[doc.id] = data;
+          }
         });
         this.setState({ drivers });
       });
@@ -37,9 +39,9 @@ class MapaConductores extends React.Component {
         let locations = snap.exportVal();
         Object.keys(locations).map(driver => {
           if (locations[driver] && drivers[driver]) {
-            console.log("prueba: ")
-            console.log(drivers[driver]);
-            console.log("fin prueba");
+            //console.log("prueba: ")
+            //console.log(drivers[driver]);
+            //console.log("fin prueba");
             drivers[driver]["position"] = locations[driver].position;
             drivers[driver]["status"] = locations[driver].status;
           }
